@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { idGenerador } from "../../utils/utils";
 
-// Estado inicial para el slice de usuarios
 const initialState = {
 	lista: [
 		{
-			id: 1,
+			id: idGenerador.next().value,
 			nombre: "John",
 			apellido: "Doe",
 			correo: "john@example.com",
@@ -12,7 +12,7 @@ const initialState = {
 			inss: "123456789",
 		},
 		{
-			id: 2,
+			id: idGenerador.next().value,
 			nombre: "Jane",
 			apellido: "Smith",
 			correo: "jane@example.com",
@@ -20,8 +20,6 @@ const initialState = {
 			inss: "987654321",
 		},
 	],
-	loading: false,
-	error: null,
 };
 
 // Crear el slice para los usuarios
@@ -30,7 +28,7 @@ const empleadoSlice = createSlice({
 	initialState,
 	reducers: {
 		addEmpleado: (state, action) => {
-			state.lista.push({ ...action.payload, id: state.lista.length + 1 });
+			state.lista.push({ ...action.payload, id: idGenerador.next().value });
 		},
 		removeEmpleado: (state, action) => {
 			state.lista = state.lista.filter((user) => user.id !== action.payload);
@@ -42,14 +40,6 @@ const empleadoSlice = createSlice({
 			if (index !== -1) {
 				state.lista[index] = action.payload;
 			}
-		},
-		// Acción para manejar la carga (opcional)
-		setLoading: (state, action) => {
-			state.loading = action.payload;
-		},
-		// Acción para manejar errores (opcional)
-		setError: (state, action) => {
-			state.error = action.payload;
 		},
 	},
 });

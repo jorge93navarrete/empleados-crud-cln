@@ -4,8 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function ModalConfirmar({ empleado, show, accionConfirmar, accionCancelar }) {
 	const handleClose = () => accionCancelar();
-	const handleShow = () => accionConfirmar();
-
+   
 	const handleConfirm = () => {
 		accionConfirmar();
 		handleClose();

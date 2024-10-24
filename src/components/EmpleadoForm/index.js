@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Button } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 function EmpleadoForm({ EmpleadoData = {}, onSubmit }) {
 	const [formData, setFormData] = useState({
-      id: "",
+		id: "",
 		nombre: "",
 		apellido: "",
 		correo: "",
@@ -14,12 +16,12 @@ function EmpleadoForm({ EmpleadoData = {}, onSubmit }) {
 	useEffect(() => {
 		if (EmpleadoData) {
 			setFormData({
-			id: EmpleadoData.id || "",
-				nombre: EmpleadoData.nombre || "jorge",
-				apellido: EmpleadoData.apellido || "navarrete",
-				correo: EmpleadoData.correo || "jorge@gmail.com",
-				cedula: EmpleadoData.cedula || "281-010793-0009P",
-				inss: EmpleadoData.inss || "54657898",
+				id: EmpleadoData.id || "",
+				nombre: EmpleadoData.nombre || "",
+				apellido: EmpleadoData.apellido || "",
+				correo: EmpleadoData.correo || "",
+				cedula: EmpleadoData.cedula || "",
+				inss: EmpleadoData.inss || "",
 			});
 		}
 	}, []);
@@ -40,7 +42,6 @@ function EmpleadoForm({ EmpleadoData = {}, onSubmit }) {
 		<div className="container mt-5">
 			<h2>Formulario de Empleado</h2>
 			<form onSubmit={handleSubmit}>
-				{/* Campo Nombres */}
 				<div className="form-group mb-3">
 					<label>Nombres</label>
 					<input
@@ -53,7 +54,6 @@ function EmpleadoForm({ EmpleadoData = {}, onSubmit }) {
 					/>
 				</div>
 
-				{/* Campo Apellidos */}
 				<div className="form-group mb-3">
 					<label>Apellidos</label>
 					<input
@@ -66,7 +66,6 @@ function EmpleadoForm({ EmpleadoData = {}, onSubmit }) {
 					/>
 				</div>
 
-				{/* Campo Correo */}
 				<div className="form-group mb-3">
 					<label>Correo Electrónico</label>
 					<input
@@ -79,7 +78,6 @@ function EmpleadoForm({ EmpleadoData = {}, onSubmit }) {
 					/>
 				</div>
 
-				{/* Campo Cédula */}
 				<div className="form-group mb-3">
 					<label>Cédula</label>
 					<input
@@ -93,7 +91,6 @@ function EmpleadoForm({ EmpleadoData = {}, onSubmit }) {
 					/>
 				</div>
 
-				{/* Campo Número INSS */}
 				<div className="form-group mb-3">
 					<label>Número INSS</label>
 					<input
@@ -105,11 +102,15 @@ function EmpleadoForm({ EmpleadoData = {}, onSubmit }) {
 						required
 					/>
 				</div>
-
-				{/* Botón de Enviar */}
-				<button type="submit" className="btn btn-primary">
+            <div className="d-flex justify-content-between">
+            <Link to={"/"} className=" btn btn-danger">
+					Regresar
+				</Link>
+				<Button type="submit" variant="primary">
 					Guardar
-				</button>
+				</Button>
+				
+            </div>
 			</form>
 		</div>
 	);

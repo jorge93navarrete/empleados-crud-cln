@@ -1,36 +1,15 @@
 export function validarEmpleado(usuario) {
-	// Definir las propiedades que queremos validar
 	const propiedades = ["nombre", "apellido", "correo", "cedula", "inss"];
 	return propiedades.every((p) => !!usuario[p] === true);
 }
 
-export function empleadoEsUnico(empleados) {
-	console.log("Lista", empleados);
-
-	const inssVistos = new Set();
-	const correosVistos = new Set();
-	const cedulasVistas = new Set();
-
-	for (const empleado of empleados) {
-		const { inss, correo, cedula } = empleado;
-
-		if (inssVistos.has(inss)) {
-			return `El número INSS ${inss} está duplicado.`;
-		}
-
-		inssVistos.add(inss);
-		if (correosVistos.has(correo)) {
-			return `El correo ${correo} está duplicado.`;
-		}
-		correosVistos.add(correo);
-
-		if (cedulasVistas.has(cedula)) {
-			return `La cédula ${cedula} está duplicada.`;
-		}
-		cedulasVistas.add(cedula);
-	}
-
-	return UNIQUE;
+export function empleadoEsUnico(empleados, campos) {   
+	return !empleados.some(
+		(e) =>
+			e.cedula == campos.cedula ||
+			e.inss == campos.inss ||
+			e.correo == campos.correo
+	);
 }
 
 export function FechaNacimientoCedula(cedula) {
@@ -43,4 +22,18 @@ export function FechaNacimientoCedula(cedula) {
 	return `${dia}-${mes}-${anio}`;
 }
 
-export const UNIQUE = "unique";
+export function validarCedula(cedula) {
+	const regex = /^\d{3}-\d{6}-\d{4}[A-Z]$/;
+	return regex.test(cedula);
+}
+
+
+ function* contadorInfinito() {
+   let i = 1;
+   while (true) {
+       yield i++;
+   }
+}
+
+export const idGenerador = contadorInfinito();
+
