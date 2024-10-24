@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import HomePage from "./pages/Home";
 import { routes } from "./routes";
 import Layout from "./components/Layout";
 
@@ -10,7 +9,7 @@ function App() {
 		<Routes>
 			{routes.map((route, i) => (
 				<Route
-					key={i}
+					key={route.path}
 					path={route.path}
 					element={<Layout>{route.component}</Layout>}
 				/>

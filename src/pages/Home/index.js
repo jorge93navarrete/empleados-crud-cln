@@ -6,12 +6,14 @@ import { useDispatch } from "react-redux";
 import { removerEmpleado } from "../../store/effects/EmpleadoEffect";
 
 const HomePage = () => {
-	const [show, setShow] = useState(false);
-	const [toDelete, setToDelete] = useState(null);
+	const [employee, setEmployee] = useState(null);
 	const dispatch = useDispatch();
 
 	const eliminarEmpleado = () => {
-		dispatch(removerEmpleado(toDelete));
+      if (employee) {
+		   dispatch(removerEmpleado(employee.id));
+         setEmployee(null);
+      }
 	};
 	return (
 		<>
@@ -29,13 +31,13 @@ const HomePage = () => {
 					</Link>
 				</div>
 				<div>
-					<EmpleadosTabla setShow={setShow} setToDelete={setToDelete} />
+					<EmpleadosTabla onDeleteEmpleado={setEmployee} />
 				</div>
 			</div>
 			<ModalConfirmar
-				show={show}
+				show={!!employee}
 				accionConfirmar={eliminarEmpleado}
-				accionCancelar={() => setShow(false)}
+				accionCancelar={() => setEmployee(null)}
 			/>
 		</>
 	);

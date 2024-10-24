@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function ModalConfirmar({ id, show, accionConfirmar, accionCancelar }) {
+function ModalConfirmar({ empleado, show, accionConfirmar, accionCancelar }) {
 	const handleClose = () => accionCancelar();
 	const handleShow = () => accionConfirmar();
 
@@ -22,7 +22,7 @@ function ModalConfirmar({ id, show, accionConfirmar, accionCancelar }) {
 					<Button variant="danger" onClick={handleClose}>
 						Cancelar
 					</Button>
-					<Button variant="primary" onClick={() => handleConfirm(id)}>
+					<Button variant="primary" onClick={() => handleConfirm(empleado)}>
 						Confirmar
 					</Button>
 				</Modal.Footer>

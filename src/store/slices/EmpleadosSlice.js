@@ -30,7 +30,7 @@ const empleadoSlice = createSlice({
 	initialState,
 	reducers: {
 		addEmpleado: (state, action) => {
-			state.lista.push({ id: state.lista.length + 1, ...action.payload });
+			state.lista.push({ ...action.payload, id: state.lista.length + 1 });
 		},
 		removeEmpleado: (state, action) => {
 			state.lista = state.lista.filter((user) => user.id !== action.payload);

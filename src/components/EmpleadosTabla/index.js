@@ -2,7 +2,8 @@ import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FechaNacimientoCedula } from "../../utils/utils";
-const EmpleadosTabla = ({ setShow, setToDelete }) => {
+
+const EmpleadosTabla = ({ onDeleteEmpleado }) => {
 	const data = useSelector((state) => state.empleados.lista);
 
 	return (
@@ -38,8 +39,7 @@ const EmpleadosTabla = ({ setShow, setToDelete }) => {
 								variant="danger"
 								className="me-2"
 								onClick={() => {
-									setToDelete(empleado.id);
-									setShow(true);
+									onDeleteEmpleado(empleado);
 								}}
 							>
 								Borrar

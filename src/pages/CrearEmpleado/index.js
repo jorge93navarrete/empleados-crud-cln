@@ -10,11 +10,6 @@ const CrearPage = () => {
    const navigate = useNavigate();
 	const empleados = useSelector((state) => state.empleados.lista);
 
-   useEffect(()=>{
-      console.log("====", empleados);
-
-   },[empleados])
-
 	const onSave = (data) => {      
 		if (validarEmpleado(data) && empleadoEsUnico(empleados) === UNIQUE) {
 			dispatch(crearEmpleado(data));
